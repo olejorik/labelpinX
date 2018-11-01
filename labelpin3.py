@@ -101,7 +101,7 @@ def convert_file_to_bitmap(in_file, out_file, pixels_per_pt=1):
 
 def get_bounding_box(in_file): 
     if is_postscript_file(in_file): # now we can get correct bounding box also for PDF
-        data = subprocess.check_output("gs -dBATCH -dSAFER -dNOPAUSE -sDEVICE=bbox %s"      % (in_file),stderr=subprocess.STDOUT,universal_newlines=True)
+        data = subprocess.check_output("gs -dBATCH -dSAFER -dNOPAUSE -dUseCropBox -sDEVICE=bbox %s"      % (in_file),stderr=subprocess.STDOUT,universal_newlines=True)
     else:
         data = ''
     box = re.search("%%BoundingBox:\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)", data)
